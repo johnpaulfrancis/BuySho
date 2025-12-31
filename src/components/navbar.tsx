@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { appName } from "../appConfig";
+
 export default function Navbar() {
+    const navigate = useNavigate();
     return (
         <nav className="bg-fk-blue sticky top-0 z-50 shadow-md">
             <div className="mx-auto px-4 h-16 flex items-center gap-4 md:gap-8">
-                <div className="flex-shrink-0 cursor-pointer">
+                <div className="flex-shrink-0 cursor-pointer" onClick={()=>navigate("/")}>
                     <div className="text-white font-bold italic text-xl tracking-tighter">{appName}</div>
                     <div className="text-xs italic text-gray-200 -mt-1 hover:underline">
                         Dive <span className="text-fk-yellow font-bold">Now</span> <i className="fa-solid fa-star text-[10px] text-fk-yellow"></i>

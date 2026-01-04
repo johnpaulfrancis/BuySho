@@ -6,6 +6,7 @@ import LoginModal from "./login-modal";
 export default function Navbar() {
     const navigate = useNavigate();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isLogin, setLogin] = useState(false);
 
     return (
         <>
@@ -30,8 +31,16 @@ export default function Navbar() {
                         <i className="fa-solid fa-magnifying-glass text-lg"></i>
                     </div>
                     <div className="ml-auto flex items-center gap-6 md:gap-8 font-medium text-white text-[15px]">
-                        <button onClick={() => setIsLoginModalOpen(true)} className="bg-white text-fk-blue px-8 py-1 font-bold rounded-sm shadow-sm hidden md:block hover:bg-gray-100 transition">
-                            Login</button>
+                        {
+                            // login checking
+                            isLogin ?
+                                <span className="text-white font-semibold">
+                                    Welcome back, John
+                                </span>
+                                :
+                                <button onClick={() => setIsLoginModalOpen(true)} className="bg-white text-fk-blue px-8 py-1 font-bold rounded-sm shadow-sm hidden md:block hover:bg-gray-100 transition">
+                                    Login</button>
+                        }
                         <a href="#" className="flex items-center gap-2 hover:text-gray-200">
                             <i className="fa-solid fa-cart-shopping"></i>
                             <span className="hidden md:block">Cart</span>
@@ -41,7 +50,7 @@ export default function Navbar() {
             </nav>
 
             {/* Login Modal Component */}
-            {LoginModal(isLoginModalOpen, () => setIsLoginModalOpen(false))}
+            <LoginModal isOpen ={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} onLoginSuccess={() => setLogin(true)}/>
         </>
     );
 }
